@@ -22,3 +22,7 @@ test('should handle new lines between numbers', () => {
     expect(add('1\n2,3')).toBe(6);
 });
 
+test('should throw an exception for negative numbers', () => {
+    expect(() => add('1,-2,3')).toThrow('negative numbers not allowed: -2');
+  });
+  
