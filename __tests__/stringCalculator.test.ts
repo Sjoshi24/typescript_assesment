@@ -21,7 +21,22 @@ describe('String Calculator', () => {
         expect(add('1\n2,3')).toBe(6);
     });
 
+    test('should support different delimiters', () => {
+        expect(add('//;\n1;2')).toBe(3);
+    });
+
     test('should throw an exception for negative numbers', () => {
         expect(() => add('1,-2,3')).toThrow('negative numbers not allowed: -2');
+    });
+    
+
+    test('should ignore numbers greater than 1000', () => {
+        expect(add('2,1001')).toBe(2);
+    });
+
+    test('should handle delimiters of any length and multiple delimiters', () => {
+        expect(add('//[***]\n1***2***3')).toBe(6);
+        expect(add('//[*][%]\n1*2%3')).toBe(6);
+        expect(add('//[**][%%]\n1**2%%3')).toBe(6);
     });
 });
